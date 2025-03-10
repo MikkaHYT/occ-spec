@@ -1,0 +1,134 @@
+STEP NUMBER 1
+create a main.py file using something like this:
+
+    # __Database__
+
+    # Secret Key
+    app.secret_key = ['SECRET KEY GOES HERE']
+
+    # Connect Database
+    [CONNECTION TO DATABASE CODE GOES HERE]
+
+    # Insert Data
+    [INSERTING DATA INTO DATABASE CODE GOES HERE]
+
+    # Select Data
+    [SELECTING DATA FROM DATABASE CODE GOES HERE]
+
+    # __Routes__
+
+    # Index
+    @app.route('/')
+    def index():
+        [INDEX RENDER_TEMPLATE CODE GOES HERE]
+
+    # Register
+    @app.route('/register' , methods=['GET', 'POST'])
+    def register():
+        [REGISTER ROUTE CODE GOES HERE]
+
+    # Login
+    @app.route('/login' , methods=['GET', 'POST'])
+    def login():
+        [LOGIN ROUTE CODE GOES HERE]
+
+    # Logout
+    @app.route('/logout', methods= ['GET', 'POST'])
+    def logout():
+        [LOGOUT ROUTE CODE GOES HERE]
+        
+    # Run Flask App
+    if __name__ == '__main__':
+        app.run(debug=True)
+
+STEP NUMBER 2
+create base.html in templates folder using:
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}[PAGE TITLE HERE]{% endblock %}</title>
+        <link rel="stylesheet" href="{% block stylesheet %}{% endblock %}">
+        <link rel="stylesheet" href="./static/css/main.css">
+        <link rel="icon" href="./static/img/favicon.ico">
+    </head>
+    <body>
+        <header>
+            [HEADER CODE GOES HERE]
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <p>&copy; 2025 [COMPANY NAME]</p>
+        </footer>
+    </body>
+    </html>
+
+STEP NUMBER 3
+create index.html using:
+
+    {% extends "base.html" %}
+    {% block content %}
+
+    [HOME PAGE CODE GOES HERE]
+
+    {% endblock %}
+
+STEP NUMBER 4
+create a styles.css or main.css whatever you wanna call it in static/css folder and it goes something like this
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #333;
+        color: white;
+        padding: 1em;
+        text-align: center;
+    }
+
+    footer {
+        background-color: #333;
+        color: white;
+        padding: 1em;
+        text-align: center;
+    }
+
+STEP NUMBER 5
+get a favicon.ico and put it in static/img folder
+
+STEP NUMBER 6
+ummm, set up things like flask sessions to control logins using ids so it can track user profiles?
+also like use flash messages to show errors and stuff
+
+teehee i guess ill give you my cheeky flash message fade out code:
+
+    <div id="flash">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    setTimeout(function() {
+                        var flash = document.getElementById("flash");
+                        if (flash) {
+                            flash.style.transition = "opacity 0.75s ease-out";
+                            flash.style.opacity = "0";
+                            setTimeout(function() {
+                                flash.style.display = "none";
+                            }, 500);
+                        }
+                    }, 2250);
+                });
+            </script>
+    </div>
