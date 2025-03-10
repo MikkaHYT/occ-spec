@@ -108,8 +108,7 @@ create a profile.html and track the users profile in sqlite
 
 
 
-ummm, set up things like flask sessions to control logins using ids so it can track user profiles?
-also like use flash messages to show errors and stuff
+also like use flash messages to show errors and success messages and stuff
 
 teehee i guess ill give you my cheeky flash message fade out code:
 
@@ -142,10 +141,11 @@ teehee i guess ill give you my cheeky flash message fade out code:
 
 things for me to remember bc i know ill forget:
 
-css id selector is #
+css rules:
+id selector is #
 class selector is .
 
-float: [direction] makes the object float one direction but id rather use position: absolute top: [px] left: [px] if i can remember how
+`float: [direction]` makes the object float one direction but id rather use position: absolute top: [px] left: [px] if i can remember how
 
 <link rel="stylesheet" href="./static/css/main.css"> to link css file
 <link rel="icon" href="./static/img/favicon.ico"> to link favicon
