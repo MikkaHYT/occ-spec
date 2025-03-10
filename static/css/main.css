@@ -15,8 +15,6 @@ header {
 
 #header-logo {
     position: absolute;
-    left: 745px;
-    top: 18px;
 }
 
 ul {
@@ -111,7 +109,16 @@ footer {
 
 #flash {
     position: absolute;
-    top: 70px;
-    right: 10px;
+    top: 10px;
+    right: 140px;
     animation: fadeOut 1.5s forwards 1.5s;
+}
+
+#auth-buttons {
+    font-family: sans-serif;
+    border-radius: 5px;
+    background-color: #555;
+    position: absolute;
+    top: 95px;
+    right: -8px;
 }

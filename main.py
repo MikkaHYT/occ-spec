@@ -12,7 +12,7 @@ app.secret_key = 'secret'
 # Connect Database
 def connect_db():
     conn = connect('database.db')
-    conn.execute('CREATE TABLE IF NOT EXISTS users (name TEXT, password TEXT)')
+    conn.execute('CREATE TABLE IF NOT EXISTS users (name TEXT, password TEXT, email TEXT)')
     return conn
 
 # Insert Data
@@ -59,6 +59,7 @@ def login():
         user = select_db(name)
         if user and checkpw(password.encode('utf-8'), user[1]):
             session['username'] = name
+            session['email'] = user[2]
             flash('Logged in', 'success')
             return redirect(url_for('index'))
         else:
@@ -72,6 +73,23 @@ def logout():
     session.pop('username', None)
     flash('Logged out', 'success')
     return redirect(url_for('index'))
+
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    if request.method == 'POST':
+        email = request.form['email']
+        conn = connect_db()
+        conn.execute('UPDATE users SET email = ? WHERE name = ?', (email, session['username']))
+        conn.commit()
+        conn.close()
+        flash('Email updated', 'success')
+        session['email'] = email
+        return redirect(url_for('profile'))
+    if 'username' in session:
+        return render_template('profile.html')
+    else:
+        flash('Login to view profile', 'danger')
+        return redirect(url_for('login'))
     
 # Run Flask App
 if __name__ == '__main__':

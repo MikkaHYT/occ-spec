@@ -43,6 +43,17 @@
                 <p>Not Logged In</p>
             {% endif %}
         </div>
+
+        <div id="auth-buttons">
+            <ul>
+                {% if not session['username'] %}
+                    <li><a href="/login">Login</a></li>
+                {% elif session['username'] %}
+                    <li><a href="/profile">Profile</a></li>
+                {% endif %}
+            <li><a href="/register">Register</a></li>
+            </ul>
+            </div>
         <div id="header-logo">
         <img id='logo' src="./static/img/logo.png" alt="Rolsa Technologies Logo">
     </div>
@@ -52,8 +63,6 @@
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Login</a></li>
             </ul>
         </nav>
     </header>
