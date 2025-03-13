@@ -150,6 +150,8 @@ class selector is .
 <link rel="stylesheet" href="./static/css/main.css"> to link css file
 <link rel="icon" href="./static/img/favicon.ico"> to link favicon
 
+
+
 session['[VAR]'] = [var] to set a session variable
 
 example of profile code to update email but can be made to update whatever variable you want.
@@ -165,3 +167,5 @@ def profile():
         flash('Email updated', 'success')
         session['email'] = email
         return redirect(url_for('profile'))
+
+https://tlk.io/pdd
